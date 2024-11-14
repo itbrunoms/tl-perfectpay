@@ -22,14 +22,14 @@ class ClientDto implements AssasDtoInterface
         return [
             'name' => $this->name,
             'email' => $this->email,
-            'document' => $this->document
+            'cpfCnpj' => $this->document
         ];
     }
 
     public static function buildFromModel(Model $model)
     {
         return new self(
-            $model->client()->external_id,
+            $model->id,
             $model->name,
             $model->email,
             $model->document

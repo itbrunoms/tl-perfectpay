@@ -31,32 +31,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @for($i = 0; $i < 10; $i++)
+
+                    @foreach($charges as $charge)
                         <tr>
-                            <td>1</td>
-                            <td>João Silva</td>
-                            <td>joao@email.com</td>
-                            <td>R$ 150,00</td>
-                            <td>2024-11-15</td>
-                            <td>Pendente</td>
+                            <td>{{$charge->id}}</td>
+                            <td>{{$charge->client->name}}</td>
+                            <td>{{$charge->client->email}}</td>
+                            <td>{{$charge->amount}}</td>
+                            <td>{{$charge->due_date}}</td>
+                            <td>{{$charge->status}}</td>
                         </tr>
-                    @endfor
-                    <tr>
-                        <td>2</td>
-                        <td>Maria Santos</td>
-                        <td>maria@email.com</td>
-                        <td>R$ 200,00</td>
-                        <td>2024-11-20</td>
-                        <td>Paga</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Pedro Costa</td>
-                        <td>pedro@email.com</td>
-                        <td>R$ 300,00</td>
-                        <td>2024-12-01</td>
-                        <td>Atrasada</td>
-                    </tr>
+                    @endforeach
                     <!-- Adicione mais linhas conforme necessário -->
                     </tbody>
                 </table>

@@ -16,11 +16,14 @@ class Charge extends Model
         'status',
         'due_date',
         'payment_type',
+        'external_id',
+        'payment_url'
     ];
 
     protected $dates = [
         'due_date',
     ];
+
 
     public function client(): BelongsTo
     {

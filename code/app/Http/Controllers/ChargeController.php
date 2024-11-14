@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Dto\ChargeDto;
 use App\Factories\CreateChargeFactory;
 use App\Http\Requests\StoreCharge;
+use App\Repositories\ChargeRepository;
 use App\Repositories\ClientRepository;
 use App\Services\SendChargeBase;
 use Illuminate\Http\Request;
@@ -12,7 +13,8 @@ use Illuminate\Http\Request;
 class ChargeController extends Controller
 {
     public function __construct(
-        protected ClientRepository $clientRepository
+        protected ClientRepository $clientRepository,
+        protected ChargeRepository $chargeRepository
     )
     {
 
@@ -20,7 +22,8 @@ class ChargeController extends Controller
 
     public function index(Request $request)
     {
-        return view('charges.index');
+        $charges = $this->chargeRepository->all();
+        return view('charges.index', ['charges' => $charges]);
     }
 
     public function create(Request $request, $id = null)
@@ -31,7 +34,7 @@ class ChargeController extends Controller
 
     public function store(StoreCharge $request)
     {
-//        try {
+        try {
             $dto = ChargeDto::buildfromRequest($request);
             $service = CreateChargeFactory::build();
 
@@ -39,9 +42,9 @@ class ChargeController extends Controller
             $base->send($dto, $service);
 
             return redirect()->route('charges.index')->with('success', 'Cobrança criada com sucesso');
-//        } catch (\Throwable $e) {
-//            dd($e->getMessage());
-//            return redirect()->back()->with('error', $e->getMessage());
-//        }
+        } catch (\Throwable $e) {
+            dd($e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }

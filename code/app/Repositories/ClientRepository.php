@@ -7,18 +7,25 @@ use App\Models\Client;
 
 class ClientRepository
 {
+    public function __construct(
+        protected Client $client
+    )
+    {
+
+    }
+
     public function all()
     {
-        return Client::all();
+        return $this->client::all();
     }
 
     public function create(ClientDto $clientDto): Client
     {
-        return Client::create($clientDto->toArray());
+        return $this->client::create($clientDto->toArray());
     }
 
     public function where(array $where)
     {
-        return Client::where($where)->get();
+        return $this->client::where($where)->get();
     }
 }
