@@ -17,6 +17,7 @@ Route::prefix('charges')->group(function () {
     Route::get('index', [ChargeController::class, 'index'])->name('charges.index');
     Route::get('create/{id?}', [ChargeController::class, 'create'])->name('charges.create');
     Route::post('store', [ChargeController::class, 'store'])->name('charges.store');
+    Route::get('charges/{charge}', [ChargeController::class, 'view'])->name('charges.view');
 });
 
 Route::prefix('client')->group(function () {

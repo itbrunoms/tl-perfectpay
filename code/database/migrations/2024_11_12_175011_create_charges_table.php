@@ -18,7 +18,9 @@ return new class extends Migration {
             $table->string('status');
             $table->date('due_date');
             $table->string('payment_type');
-            $table->string('payment_url')->nullable();;
+            $table->string('payment_url')->nullable();
+            $table->string('encoded_image')->nullable();
+            $table->json('payload')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

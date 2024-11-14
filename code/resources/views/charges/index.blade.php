@@ -28,6 +28,7 @@
                         <th>Valor</th>
                         <th>Data de Vencimento</th>
                         <th>Status</th>
+                        <th>Ações</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -39,7 +40,12 @@
                             <td>{{$charge->client->email}}</td>
                             <td>{{$charge->amount}}</td>
                             <td>{{$charge->due_date}}</td>
-                            <td>{{$charge->status}}</td>
+                            <td>{{$charge->label_status}}</td>
+                            <td>
+                                <a href="{{route('charges.view',$charge->id)}}">
+                                    <i class="glyphicon glyphicon-hd-video"></i>
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                     <!-- Adicione mais linhas conforme necessário -->
